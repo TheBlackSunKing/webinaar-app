@@ -22,8 +22,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if($this->app->environment('production')) {
+            URL::forceRootUrl(Config::get('app.url'));
+            if (str_contains(Config::get('app.url'), 'https://')) {
+                URL::forceScheme('https');
+            }
+
             \URL::forceScheme('https');
         }
+        
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
             return (new MailMessage)
                 //->mailer("webinaar-app")

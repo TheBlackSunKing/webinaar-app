@@ -93,7 +93,7 @@ const submit = () => {
             </div>
             <div class="flex items-center justify-center mt-4">
                 <div class="  me-6 text-sm text-gray-600 hover:text-gray-900  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-520 "> 
-                    ya tienes una cuenta?
+                    No tienes una cuenta?
                 </div>
                 
                 <Link 

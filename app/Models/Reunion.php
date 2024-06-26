@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reunion extends Model
 {
+    protected $perPage = 20;
     use HasFactory;
     protected $fillable = [
         'estimate_time',

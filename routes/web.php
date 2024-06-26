@@ -21,16 +21,34 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+    return redirect('/login');
+    /*
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-    ]);
+    ]);*/
+   
 });
 
-Route::get('reunions', [ReunionController::class, 'create'])
-    ->middleware(['auth', 'verified'])->name('reunions');
+//Route::get('reunions', [ReunionController::class, 'create'])
+//    ->middleware(['auth', 'verified'])->name('reunions');
+    
+Route::controller(ReunionController::class)->group(function () {
+    Route::get('reunions', 'create');
+    Route::inertia('/reunions', 'Reunions')->name('reunions');
+    //Route::get('/reunions/{id}', 'show');
+    //Route::post('/reunions', 'store');
+    Route::get('reunions/index', 'index');
+})->middleware(['auth', 'verified'])->name('reunions');
+
+//Route::post('reunions/index', 'ReunionController@index');
+
+
+
+//Route::resource('reunions', 'App\Http\Controllers\ReunionController'); 
+
 
 Route::get('subscriptions', [SubscriptionController::class, 'create'])
     ->middleware(['auth', 'verified'])->name('subscriptions');
